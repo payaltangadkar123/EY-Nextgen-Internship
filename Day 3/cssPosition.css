@@ -1,0 +1,14 @@
+.relative{
+    height: 100px;
+    width: 100px;
+    border: 2px solid red;
+    background-color: blanchedalmond;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    /* position: absolute; */
+    /* position: fixed; */
+    position: sticky;
+    top: 200px;
+    left: 200px;
+}

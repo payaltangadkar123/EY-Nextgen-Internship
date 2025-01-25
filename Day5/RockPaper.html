@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <style>
+ body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 0, 150, 0.3), rgba(0, 200, 255, 0.3));
+    z-index: -1;
+}
+
+
+@keyframes backgroundMove {
+    from {
+        background-position: center top;
+    }
+    to {
+        background-position: center bottom;
+    }
+}
+
+<img src="backg1.png" class="side-image left">
+<img src="right-animation.gif" class="side-image right">
+
+.side-image {
+    position: absolute;
+    top: 50%;
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+    transform: translateY(-50%);
+    animation: float 3s infinite alternate ease-in-out;
+}
+
+.left {
+    left: 5%;
+}
+
+.right {
+    right: 5%;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(-50%) translateX(0px);
+    }
+    to {
+        transform: translateY(-45%) translateX(10px);
+    }
+}
+
+
+
+
+        .game-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
+            color: black;
+        }
+
+        h1 {
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, black, darkblue, #1e90ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: neonGlow 1.5s infinite alternate;
+}
+
+@keyframes neonGlow {
+    from {
+        text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    }
+    to {
+        text-shadow: 0px 0px 20px rgba(255, 255, 255, 1);
+    }
+}
+
+
+        .choices img {
+    width: 120px;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s;
+    filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.6));
+}
+
+.choices img:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 1));
+}
+
+
+        .choices img:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #result-text {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.result-show {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
+
+
+        button {
+            background-color: #ff5e62;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff9966;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Rock Paper Scissors</h1>
+        <p>Choose your move:</p>
+
+        <div class="choices">
+            <img src="rock.png" id="rock" onclick="playGame('rock')" alt="Rock">
+            <img src="paper.png" id="paper" onclick="playGame('paper')" alt="Paper">
+            <img src="scissor.png" id="scissors" onclick="playGame('scissors')" alt="Scissors">
+        </div>
+
+        <div class="result-container">
+            <p id="user-choice">You chose: <span></span></p>
+            <p id="computer-choice">Computer chose: <span></span></p>
+            <p id="result-text"></p>
+        </div>
+
+        <button onclick="resetGame()">Play Again</button>
+    </div>
+
+    <audio id="click-sound" src="click.mp3"></audio>
+    <audio id="win-sound" src="win.mp3"></audio>
+    <audio id="lose-sound" src="lose.mp3"></audio>
+
+    <script>
+        const choices = ["rock", "paper", "scissors"];
+        const userChoiceSpan = document.querySelector("#user-choice span");
+        const computerChoiceSpan = document.querySelector("#computer-choice span");
+        const resultText = document.getElementById("result-text");
+
+        function playGame(userChoice) {
+            document.getElementById("click-sound").play();
+
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+            userChoiceSpan.textContent = userChoice;
+            computerChoiceSpan.textContent = computerChoice;
+
+            let result = "";
+
+            if (userChoice === computerChoice) {
+                result = "It's a Draw! 🤝";
+            } else if (
+                (userChoice === "rock" && computerChoice === "scissors") ||
+                (userChoice === "paper" && computerChoice === "rock") ||
+                (userChoice === "scissors" && computerChoice === "paper")
+            ) {
+                result = "You Win! 🎉";
+                document.getElementById("win-sound").play();
+            } else {
+                result = "You Lose! 😞";
+                document.getElementById("lose-sound").play();
+            }
+
+            resultText.textContent = result;
+resultText.classList.add("result-show"); 
+setTimeout(() => resultText.classList.remove("result-show"), 2000);
+
+        }
+
+        function resetGame() {
+            userChoiceSpan.textContent = "";
+            computerChoiceSpan.textContent = "";
+            resultText.textContent = "";
+        }
+    </script>
+</body>
+</html>

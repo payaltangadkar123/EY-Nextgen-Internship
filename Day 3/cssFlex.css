@@ -1,0 +1,75 @@
+.container{
+    display: flex;
+    /* flex-direction: row; */
+    /* flex-direction: row-reverse; */
+    /* flex-direction: column; */
+    /* flex-direction: column-reverse; */
+    /* justify-content: flex-start; */
+    /* justify-content: flex-end; */
+    /* justify-content: center; */
+    justify-content: space-between;
+    /* justify-content: space-around; */
+    /* justify-content: space-evenly; */
+    flex-wrap: wrap;
+    row-gap: 10em;
+    column-gap: 10em;
+}
+
+
+
+
+
+
+.box{
+    height: 120px;
+    width: 120px;
+    border: 1px solid black;
+    font-size: 5em;
+    text-align: center;
+    border-radius: 20px;
+    /* text-shadow: 5px 3px 20px black; */
+    color: black;
+    
+}
+#box1{
+    background-color: red;
+    background-image: url("./product1.png");
+    background-size: cover;
+    
+}
+
+#box2{
+    background-color: blueviolet;
+    background-image: url("./product2.png");
+    background-size: cover;
+}
+
+#box3{
+    background-color: yellow;
+    background-image: url("./product3.png");
+    background-size: cover;
+}
+
+#box4{
+    background-color: crimson;
+    background-image: url("./product4.png");
+    background-size: cover;
+}
+
+#box5{
+    background-color: crimson;
+    background-image: url("./product1.png");
+    background-size: cover;
+}
+
+#box6{
+    background-color: crimson;
+    background-image: url("./product2.png");
+    background-size: cover;
+}
+
+#box7{
+    background-color: crimson;
+    background-image: url("./product3.png");
+    background-size: cover;
+}

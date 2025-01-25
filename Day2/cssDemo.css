@@ -1,0 +1,38 @@
+h2{
+    color: aqua;
+    background-color: cadetblue;
+    padding: 10px;
+    border: 2px solid green;
+}
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: aqua;
+    color: black;
+    padding: 10px;
+    width: 200px;
+    line-height: 50px;
+}
+
+.box{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    font-size: 8vh;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+#box1{
+    background-color: red;
+}
+
+#box2{
+    background-color: blueviolet;
+}
+
+#box3{
+    background-color: chartreuse;
+}
+
+#box4{
+    background-color: crimson;
+}
